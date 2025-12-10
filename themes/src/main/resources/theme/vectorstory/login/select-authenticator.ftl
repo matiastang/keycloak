@@ -20,12 +20,12 @@
                             <i class="${properties['${authenticationSelection.iconCssClass}']!authenticationSelection.iconCssClass} ${properties.kcSelectAuthListItemIconPropertyClass!}"></i>
                         </div>
                         <div class="${properties.kcSelectAuthListItemBodyClass!}">
-                            <h2 class="${properties.kcSelectAuthListItemHeadingClass!}">
+                            <div class="${properties.kcSelectAuthListItemHeadingClass!}">
                                 ${msg('${authenticationSelection.displayName}')}
-                            </h2>
-                        </div>
-                        <div class="${properties.kcSelectAuthListItemDescriptionClass!}">
-                            ${msg('${authenticationSelection.helpText}')}
+                            </div>
+                            <div class="${properties.kcSelectAuthListItemDescriptionClass!}">
+                                ${msg('${authenticationSelection.helpText}')}
+                            </div>
                         </div>
                     </div>
                     <div class="${properties.kcSelectAuthListItemFillClass!}">

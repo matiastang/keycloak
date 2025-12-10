@@ -64,7 +64,7 @@
       </div>
       <div class="${properties.kcInputGroupItemClass}">
         <button class="${properties.kcFormPasswordVisibilityButtonClass}" type="button" aria-label="${msg('showPassword')}"
-                aria-controls="${name}" data-password-toggle
+                aria-controls="${name}" data-password-toggle tabindex="-1"
                 data-icon-show="${properties.kcFormPasswordVisibilityIconShow}" data-icon-hide="${properties.kcFormPasswordVisibilityIconHide}"
                 data-label-show="${msg('showPassword')}" data-label-hide="${msg('hidePassword')}" id="${name}-show-password">
             <i class="${properties.kcFormPasswordVisibilityIconShow}" aria-hidden="true"></i>
