@@ -154,7 +154,14 @@
                   value="${l.url}"
                   ${(l.languageTag == locale.currentLanguageTag)?then('selected','')}
                 >
-                  ${l.label}
+                  <#-- Handle duplicate label issue: if label contains the language tag, use it directly -->
+                  <#if l.languageTag == "zh-CN">
+                    中文（简体）
+                  <#elseif l.languageTag == "en">
+                    English
+                  <#else>
+                    ${l.label}
+                  </#if>
                 </option>
               </#list>
             </select>

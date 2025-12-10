@@ -14,7 +14,7 @@
 </#macro>
 
 <#macro buttonLink href label id="" class=["kcButtonSecondaryClass"]>
-  <a id="${id}" href="${href}" class="<#list class as c>${properties[c]} </#list>">${msg(label)}</a>
+  <a id="${id}" href="${href}" class="<#list class as c>${properties[c]} </#list>">${kcSanitize(msg(label))?no_esc}</a>
 </#macro>
 
 <#macro loginButton>
