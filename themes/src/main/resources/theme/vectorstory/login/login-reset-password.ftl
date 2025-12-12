@@ -6,9 +6,7 @@
         ${msg("emailForgotTitle")}
     <#elseif section = "form">
         <form id="kc-reset-password-form" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
-            <#assign label>
-                <#if !realm.loginWithEmailAllowed>${msg("username")}<#elseif !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else>${msg("email")}</#if>
-            </#assign>
+            <#assign label = (!realm.loginWithEmailAllowed)?then(msg("username"), (!realm.registrationEmailAsUsername)?then(msg("usernameOrEmail"), msg("email")))?trim>
             <@field.input name="username" label=label value=auth.attemptedUsername!'' autofocus=true />
 
             <@buttons.actionGroup>

@@ -16,8 +16,15 @@
                 </form>
                 <div class="${properties.kcSelectAuthListItemClass!}" onclick="document.forms[${authenticationSelection?index}].requestSubmit()">
                     <div class="pf-v5-c-data-list__item-content">
+                        <#-- 根据类型选择更贴切的图标 -->
+                        <#assign selectionKey = (authenticationSelection.iconCssClass!'')?lower_case>
+                        <#assign displayKey = (authenticationSelection.displayName!'')?lower_case>
+                        <#assign iconClass =
+                            (selectionKey?contains("phone") || selectionKey?contains("sms") || displayKey?contains("phone") || displayKey?contains("sms"))?then("fas fa-mobile-alt",
+                            (selectionKey?contains("mail") || selectionKey?contains("email") || displayKey?contains("mail") || displayKey?contains("email"))?then("fas fa-envelope",
+                            (properties['${authenticationSelection.iconCssClass}']!authenticationSelection.iconCssClass)))>
                         <div class="${properties.kcSelectAuthListItemIconClass!}">
-                            <i class="${properties['${authenticationSelection.iconCssClass}']!authenticationSelection.iconCssClass} ${properties.kcSelectAuthListItemIconPropertyClass!}"></i>
+                            <i class="${iconClass} ${properties.kcSelectAuthListItemIconPropertyClass!}"></i>
                         </div>
                         <div class="${properties.kcSelectAuthListItemBodyClass!}">
                             <div class="${properties.kcSelectAuthListItemHeadingClass!}">
@@ -38,4 +45,3 @@
 
     </#if>
 </@layout.registrationLayout>
-

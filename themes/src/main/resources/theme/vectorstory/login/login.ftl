@@ -14,9 +14,7 @@
             <#if realm.password>
                 <form id="kc-form-login" class="${properties.kcFormClass!}" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post" novalidate="novalidate">
                     <#if !usernameHidden??>
-                        <#assign label>
-                            <#if !realm.loginWithEmailAllowed>${msg("username")}<#elseif !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else>${msg("email")}</#if>
-                        </#assign>
+                        <#assign label = (!realm.loginWithEmailAllowed)?then(msg("username"), (!realm.registrationEmailAsUsername)?then(msg("usernameOrEmail"), msg("email")))?trim>
                         <@field.input name="username" label=label error=kcSanitize(messagesPerField.getFirstError('username','password'))?no_esc
                             autofocus=true autocomplete="${(enableWebAuthnConditionalUI?has_content)?then('username webauthn', 'username')}" value=login.username!'' />
                         <@field.password name="password" label=msg("password") error="" forgotPassword=realm.resetPasswordAllowed autofocus=usernameHidden?? autocomplete="current-password">

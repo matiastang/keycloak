@@ -16,9 +16,7 @@
                           method="post">
                         <#if !usernameHidden??>
                             <div class="${properties.kcFormGroupClass!}">
-                                <#assign label>
-                                    <#if !realm.loginWithEmailAllowed>${msg("username")}<#elseif !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else>${msg("email")}</#if>
-                                </#assign>
+                                <#assign label = (!realm.loginWithEmailAllowed)?then(msg("username"), (!realm.registrationEmailAsUsername)?then(msg("usernameOrEmail"), msg("email")))?trim>
                                 <@field.input name="username" label=label value=login.username!'' autofocus=true autocomplete="${(enableWebAuthnConditionalUI?has_content)?then('username webauthn', 'username')}" />
                             </div>
                         </#if>

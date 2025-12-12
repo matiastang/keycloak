@@ -31,6 +31,7 @@
 .pf-v5-c-login__main-header {
     border-top: 4px solid var(--keycloak-card-top-color);
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding-left: 32px;
 }
 
 /* Info section - top margin + bottom padding */
@@ -67,7 +68,6 @@ div.kc-logo-text span {
    ============================================ */
 
 /* 统一所有文本输入框样式 */
-.pf-v5-c-form-control,
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -75,7 +75,8 @@ input[type="tel"],
 select,
 textarea {
     width: 100%;
-    padding: 0.75rem 1rem;
+    height: 3rem;
+    padding: 0 1rem;
     font-size: 1rem;
     line-height: 1.5;
     color: var(--input-text);
@@ -83,11 +84,56 @@ textarea {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     transition: var(--transition);
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
+    /* 移除可能存在的底部边框/下划线 */
+    border-bottom: 1px solid var(--border-color) !important;
+    text-decoration: none !important;
+}
+
+/* span.pf-v5-c-form-control 作为输入框包装器 - 移除所有样式 */
+span.pf-v5-c-form-control {
+    display: block;
+    width: 100%;
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    /* 移除任何可能的底部边框 */
+    border-bottom: none !important;
+    outline: none !important;
+}
+
+/* 移除 span.pf-v5-c-form-control 的伪元素边线 */
+span.pf-v5-c-form-control::before,
+span.pf-v5-c-form-control::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    background: none !important;
+}
+
+/* 移除所有输入框包装器的伪元素 */
+.pf-v5-c-form-control::before,
+.pf-v5-c-form-control::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    background: none !important;
+}
+
+/* 移除所有输入框的伪元素边线 */
+input::before,
+input::after,
+textarea::before,
+textarea::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    background: none !important;
 }
 
 /* 输入框焦点状态 */
-.pf-v5-c-form-control:focus,
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
@@ -96,25 +142,22 @@ select:focus,
 textarea:focus {
     outline: none;
     border-color: var(--border-focus-color);
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1), var(--shadow-sm);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
 }
 
 /* 输入框错误状态 */
-.pf-v5-c-form-control.pf-m-error,
 input.pf-m-error,
 .pf-m-error input {
     border-color: var(--error-color);
 }
 
-.pf-v5-c-form-control.pf-m-error:focus,
 input.pf-m-error:focus,
 .pf-m-error input:focus {
     border-color: var(--error-color);
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1), var(--shadow-sm);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
 /* 输入框禁用状态 */
-.pf-v5-c-form-control:disabled,
 input:disabled,
 select:disabled,
 textarea:disabled {
@@ -125,7 +168,6 @@ textarea:disabled {
 }
 
 /* 输入框占位符样式 */
-.pf-v5-c-form-control::placeholder,
 input::placeholder,
 textarea::placeholder {
     color: #9ca3af;
@@ -212,56 +254,46 @@ a:hover {
 }
 
 /* ============================================
-   密码可见性按钮优化
+   旧的密码输入组样式 - 已废弃,保留作为后备
    ============================================ */
 
-/* 密码可见性按钮 - 移除 tab 焦点 */
-.pf-v5-c-button.pf-m-control,
-button[data-password-toggle],
-button.pf-v5-c-button[aria-label*="password"],
-button.pf-v5-c-button[aria-label*="密码"] {
-    min-width: 2.5rem;
-    height: 2.5rem;
-    padding: 0.5rem;
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    cursor: pointer;
-    transition: var(--transition);
-    /* 移除 tab 键焦点 */
-    tabindex: -1;
-}
-
-button[data-password-toggle]:hover,
-button.pf-v5-c-button[aria-label*="password"]:hover,
-button.pf-v5-c-button[aria-label*="密码"]:hover {
-    background-color: #f3f4f6;
-    border-color: var(--primary-color);
-}
-
-button[data-password-toggle]:focus,
-button.pf-v5-c-button[aria-label*="password"]:focus,
-button.pf-v5-c-button[aria-label*="密码"]:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-/* 输入组样式优化 */
+/* 这些样式用于其他可能使用 kcInputGroup 的页面 */
 .pf-v5-c-input-group {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.pf-v5-c-input-group-item,
+.pf-v5-c-input-group__item {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
     display: flex;
     align-items: stretch;
 }
 
-.pf-v5-c-input-group .pf-v5-c-form-control,
-.pf-v5-c-input-group input {
-    border-radius: var(--radius-md) 0 0 var(--radius-md);
-    border-right: none;
+.pf-v5-c-input-group span.pf-v5-c-form-control {
+    display: block !important;
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    flex: 1;
 }
 
-.pf-v5-c-input-group .pf-v5-c-form-control:focus,
+.pf-v5-c-input-group input {
+    border-radius: var(--radius-md) 0 0 var(--radius-md) !important;
+    border-right: none !important;
+}
+
 .pf-v5-c-input-group input:focus {
     z-index: 1;
-    border-right: 1px solid var(--border-focus-color);
+    border-right: 1px solid var(--border-focus-color) !important;
 }
 
 /* ============================================
@@ -289,7 +321,7 @@ label {
 
 .pf-v5-c-form__group,
 .pf-v5-c-form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;  /* 减少表单组之间的间距，从1.5rem改为1rem */
 }
 
 .pf-v5-c-form__group:last-child,
@@ -315,6 +347,74 @@ label {
     color: var(--error-color);
 }
 
+/* 错误提示容器 - 移除底部红色下划线 */
+.pf-v5-c-form__helper-text,
+.pf-v5-c-helper-text,
+.pf-v5-c-input-helper-text,
+.pf-v5-c-input-helper-text-item {
+    border: none !important;
+    border-bottom: none !important;
+    background: none !important;
+    padding-left: 0 !important;
+}
+
+/* 错误提示项 - 使图标和文字在同一行 */
+.pf-v5-c-input-helper-text-item,
+.pf-v5-c-helper-text__item {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    margin-top: 0.5rem !important;
+}
+
+/* 错误图标容器 */
+.pf-v5-c-input-helper-text-item-icon,
+.pf-v5-c-helper-text__item-icon {
+    flex-shrink: 0 !important;
+    margin-top: 0.125rem !important;
+}
+
+/* 错误文本 */
+.pf-v5-c-input-helper-text-item-text,
+.pf-v5-c-helper-text__item-text,
+.pf-v5-c-input-error-message-class {
+    flex: 1 !important;
+    display: inline !important;
+}
+
+/* 登录页记住我/忘记密码辅助行：去除多余间距并垂直对齐 */
+.login-pf .pf-v5-c-form__helper-text,
+.login-pf .pf-v5-c-helper-text {
+    margin-top: 0.5rem !important;
+    padding: 0 !important;
+}
+
+.login-pf .pf-v5-c-form__helper-text .pf-v5-c-helper-text__item,
+.login-pf .pf-v5-c-form__helper-text .pf-v5-c-helper-text__item-text,
+.login-pf .pf-v5-c-helper-text__item {
+    margin: 0 !important;
+    align-items: center !important;
+}
+
+.login-pf .pf-v5-c-check,
+.login-pf .pf-v5-c-check__label {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem;
+    line-height: 1.1;
+}
+
+.login-pf .pf-v5-c-check__input {
+    margin: 0 !important;
+    width: 1rem;
+    height: 1rem;
+    align-self: center;
+    vertical-align: middle;
+    transform: translateY(-0.5px);
+}
+
 /* 错误图标 */
 .pf-v5-c-form-control__utilities .pf-v5-c-button {
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
@@ -325,12 +425,82 @@ label {
    ============================================ */
 
 select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
     background-position: right 0.75rem center;
     background-repeat: no-repeat;
     background-size: 1.25rem;
     padding-right: 2.5rem;
+}
+
+/* 移除所有可能的浏览器原生select样式 */
+select::-ms-expand {
+    display: none;
+}
+
+/* 语言选择器特殊样式 - 简洁无边框 */
+#login-select-toggle {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    font-size: 0.875rem;
+    height: auto !important;
+    padding: 0.25rem 2rem 0.25rem 0.5rem !important;
+    color: #374151;
+    font-weight: 500;
+    cursor: pointer;
+    /* 移除 CSS 自定义的下拉箭头,只保留浏览器原生箭头 */
+    background-image: none !important;
+    /* 或者隐藏原生箭头,只保留 CSS 箭头 */
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    /* 使用更小更简洁的箭头图标 */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: right 0.25rem center !important;
+    background-repeat: no-repeat !important;
+    background-size: 1rem !important;
+}
+
+#login-select-toggle:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* 移除语言选择器的伪元素边线 */
+#login-select-toggle::before,
+#login-select-toggle::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    background: none !important;
+}
+
+/* 移除所有 select 元素的伪元素 */
+select::before,
+select::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    background: none !important;
+}
+
+#login-select-toggle:hover {
+    color: var(--primary-color);
+}
+
+/* 语言选择器包装容器 - 移除样式 */
+.pf-v5-c-login__main-header-utilities .pf-v5-c-form-control,
+.pf-v5-c-login__main-header-utilities > div {
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    height: auto !important;
 }
 
 /* ============================================
@@ -424,16 +594,24 @@ input[type="radio"]:focus {
     list-style: none !important;
     padding: 0 !important;
     margin: 0 !important;
+    border: none !important;
 }
 
 /* 认证方式列表项包装器 */
 .pf-v5-c-data-list__item.pf-m-clickable {
     margin-bottom: 1rem !important;
     list-style: none !important;
+    border: none !important;
 }
 
 .pf-v5-c-data-list__item.pf-m-clickable:last-child {
     margin-bottom: 0 !important;
+}
+
+/* 列表项 - 移除可能的上边框 */
+.pf-v5-c-data-list__item,
+.pf-v5-c-data-list__item-row {
+    border-top: none !important;
 }
 
 /* 认证方式选项卡片 - 使用更明显的边框和背景 */
@@ -441,14 +619,14 @@ input[type="radio"]:focus {
 .pf-v5-c-data-list__item-row {
     display: flex !important;
     align-items: center !important;
-    padding: 1.5rem 1.75rem !important;
+    padding: 1rem 1.5rem !important;
     background: linear-gradient(to right, #ffffff 0%, #fafbfc 100%) !important;
     border: 2px solid #d1d5db !important;
     border-radius: var(--radius-lg) !important;
     cursor: pointer !important;
     transition: var(--transition) !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
-    min-height: 90px !important;
+    min-height: auto !important;
 }
 
 .select-auth-box-parent:hover,
@@ -469,16 +647,62 @@ input[type="radio"]:focus {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 3.5rem !important;
-    height: 3.5rem !important;
-    min-width: 3.5rem !important;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    min-width: 2.75rem !important;
     background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
-    border-radius: var(--radius-lg) !important;
+    border-radius: var(--radius-md) !important;
     color: var(--primary-color) !important;
-    font-size: 1.75rem !important;
-    margin-right: 1.25rem !important;
+    font-size: 1.5rem !important;
+    margin-right: 1rem !important;
     flex-shrink: 0 !important;
     box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15) !important;
+}
+
+.pf-v5-c-data-list__item-content {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    gap: 1rem !important;
+}
+
+/* 为图标添加默认内容,当没有图标时显示 */
+.pf-v5-c-data-list__cell.pf-m-icon:empty::before,
+.pf-v5-c-data-list__cell.pf-m-icon i:empty::before {
+    content: "🔐";
+    font-size: 1.5rem;
+}
+
+/* 针对不同登录方式的图标样式 */
+/* 用户名密码登录 */
+.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorPasswordClass::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="password"]::before {
+    content: "🔑";
+}
+
+/* 手机号验证码登录 */
+.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorSMSClass::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="sms"]::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="phone"]::before {
+    content: "📱";
+}
+
+/* 邮箱验证码登录 */
+.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorEmailClass::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="email"]::before {
+    content: "📧";
+}
+
+/* OTP/TOTP */
+.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorOTPClass::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="otp"]::before {
+    content: "🔢";
+}
+
+/* WebAuthn */
+.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorWebAuthnClass::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="webauthn"]::before {
+    content: "🔐";
 }
 
 .select-auth-box-parent:hover .pf-v5-c-data-list__cell.pf-m-icon {
@@ -664,4 +888,325 @@ hr {
     div.pf-v5-c-login__main-header {
         grid-template-columns: 70% 30%;
     }
+}
+
+/* ============================================
+   密码输入框样式 - 内嵌显示/隐藏按钮
+   ============================================ */
+
+/* 密码输入组容器 */
+div.password-input-group,
+.password-input-group {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 3rem !important;
+    max-height: 3rem !important;
+}
+
+/* 密码输入框 */
+.password-input {
+    width: 100% !important;
+    height: 3rem !important;
+    padding: 0 3.5rem 0 1rem !important;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--input-text);
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    box-shadow: none;
+    display: block !important;
+}
+
+.password-input:focus {
+    outline: none;
+    border-color: var(--border-focus-color);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.password-input.error {
+    border-color: var(--error-color);
+}
+
+.password-input.error:focus {
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* 密码可见性切换按钮 - 内嵌在输入框中 */
+.password-visibility-btn {
+    position: absolute !important;
+    right: 0.25rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    padding: 0.5rem !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    cursor: pointer;
+    transition: var(--transition);
+    color: #6b7280 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 10 !important;
+    margin: 0 !important;
+}
+
+.password-visibility-btn:hover {
+    background-color: #f3f4f6;
+    color: var(--primary-color);
+}
+
+.password-visibility-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.password-visibility-btn i {
+    font-size: 1.25rem;
+}
+
+/* 确保密码输入组不被其他样式影响 */
+.password-input-group > * {
+    box-sizing: border-box;
+}
+
+.password-input-group > input {
+    margin: 0 !important;
+}
+
+.password-input-group > button {
+    margin: 0 !important;
+}
+
+/* ============================================
+   验证码输入框样式 - 内嵌发送按钮
+   ============================================ */
+
+/* 验证码输入组容器 */
+.verification-code-input-group {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+/* 验证码输入框 */
+.verification-code-input {
+    width: 100%;
+    height: 3rem;
+    padding: 0 8rem 0 1rem !important;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--input-text);
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    box-shadow: none;
+}
+
+.verification-code-input:focus {
+    outline: none;
+    border-color: var(--border-focus-color);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* 发送验证码按钮 - 内嵌在输入框中 */
+.send-code-btn {
+    position: absolute;
+    right: 0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2.5rem;
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.send-code-btn:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+}
+
+.send-code-btn:active:not(:disabled) {
+    background-color: var(--primary-active);
+}
+
+.send-code-btn:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* ============================================
+   强制覆盖 - 密码输入框内嵌按钮样式
+   ============================================ */
+
+/* 最高优先级 - 强制应用密码输入组样式 */
+#kc-form-login .password-input-group,
+#kc-form .password-input-group,
+form .password-input-group,
+div.pf-v5-c-form__group .password-input-group,
+.password-input-group.password-input-group {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 3rem !important;
+    max-height: 3rem !important;
+}
+
+#kc-form-login .password-input,
+#kc-form .password-input,
+form .password-input,
+input.password-input {
+    width: 100% !important;
+    height: 3rem !important;
+    padding: 0 3.5rem 0 1rem !important;
+    display: block !important;
+    margin: 0 !important;
+}
+
+#kc-form-login .password-visibility-btn,
+#kc-form .password-visibility-btn,
+form .password-visibility-btn,
+button.password-visibility-btn {
+    position: absolute !important;
+    right: 0.25rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    margin: 0 !important;
+    z-index: 10 !important;
+}
+
+/* ============================================
+   标题与表单对齐 - 保持统一左右边距
+   ============================================ */
+
+/* 登录页面标题区域不移除padding，保持与表单一致的边距 */
+/* 移除这段代码，让标题保持默认的左右边距 */
+
+/* ============================================
+   "记住我"和"忘记密码"对齐修复
+   ============================================ */
+
+/* 复选框容器对齐 */
+.pf-v5-c-check {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0.75rem 0 0 0 !important;  /* 与上方输入框留有间距 */
+    padding: 0 !important;
+}
+
+.pf-v5-c-check__label {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+    cursor: pointer;
+}
+
+/* 复选框输入框垂直居中 */
+.pf-v5-c-check__input {
+    margin: 0 0.5rem 0 0 !important;
+    vertical-align: middle !important;
+    flex-shrink: 0 !important;
+    cursor: pointer;
+}
+
+/* 复选框标签文字 */
+.pf-v5-c-check__label-text {
+    line-height: 1.5 !important;
+}
+
+/* Helper text 容器（忘记密码链接） */
+.pf-v5-c-form__helper-text,
+.pf-v5-c-helper-text {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.pf-v5-c-helper-text__item-text,
+.pf-v5-c-helper-text__item {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+}
+
+/* 忘记密码链接对齐 */
+.pf-v5-c-form__helper-text a,
+.pf-v5-c-helper-text a {
+    line-height: 1.5 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ============================================
+   最高优先级 - 强制移除所有伪元素边线
+   ============================================ */
+
+/* 移除输入框包装器的伪元素 */
+span.pf-v5-c-form-control::before,
+span.pf-v5-c-form-control::after,
+.pf-v5-c-form-control::before,
+.pf-v5-c-form-control::after,
+div.pf-v5-c-form__group span.pf-v5-c-form-control::before,
+div.pf-v5-c-form__group span.pf-v5-c-form-control::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    background: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    visibility: hidden !important;
+}
+
+/* 移除所有输入元素的伪元素 */
+input::before,
+input::after,
+textarea::before,
+textarea::after,
+select::before,
+select::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    background: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    visibility: hidden !important;
+}
+
+/* 移除语言选择器的伪元素 */
+#login-select-toggle::before,
+#login-select-toggle::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    background: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    visibility: hidden !important;
 }
