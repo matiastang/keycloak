@@ -81,7 +81,7 @@
                 // 发送请求
                 var form = document.createElement('form');
                 form.method = 'POST';
-                form.action = '${url.loginAction}';
+                form.action = '${url.loginAction?no_esc}';
 
                 var actionInput = document.createElement('input');
                 actionInput.type = 'hidden';
