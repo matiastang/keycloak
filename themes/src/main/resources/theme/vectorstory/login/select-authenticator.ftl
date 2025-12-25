@@ -19,10 +19,21 @@
                         <#-- 根据类型选择更贴切的图标 -->
                         <#assign selectionKey = (authenticationSelection.iconCssClass!'')?lower_case>
                         <#assign displayKey = (authenticationSelection.displayName!'')?lower_case>
-                        <#assign iconClass =
-                            (selectionKey?contains("phone") || selectionKey?contains("sms") || displayKey?contains("phone") || displayKey?contains("sms"))?then("fas fa-mobile-alt",
-                            (selectionKey?contains("mail") || selectionKey?contains("email") || displayKey?contains("mail") || displayKey?contains("email"))?then("fas fa-envelope",
-                            (properties['${authenticationSelection.iconCssClass}']!authenticationSelection.iconCssClass)))>
+                        <#assign isPassword = selectionKey?contains("password") || selectionKey?contains("username") || displayKey?contains("password") || displayKey?contains("username") || displayKey?contains("账号") || displayKey?contains("密码")>
+                        <#assign isWeChat = selectionKey?contains("wechat") || selectionKey?contains("weixin") || displayKey?contains("wechat") || displayKey?contains("weixin") || displayKey?contains("微信")>
+                        <#assign isPhone = selectionKey?contains("phone") || selectionKey?contains("sms") || displayKey?contains("phone") || displayKey?contains("sms")>
+                        <#assign isEmail = selectionKey?contains("mail") || selectionKey?contains("email") || displayKey?contains("mail") || displayKey?contains("email")>
+                        <#if isPassword>
+                            <#assign iconClass = "fas fa-user">
+                        <#elseif isWeChat>
+                            <#assign iconClass = "fab fa-weixin">
+                        <#elseif isPhone>
+                            <#assign iconClass = "fas fa-mobile-alt">
+                        <#elseif isEmail>
+                            <#assign iconClass = "fas fa-envelope">
+                        <#else>
+                            <#assign iconClass = properties[authenticationSelection.iconCssClass]!authenticationSelection.iconCssClass>
+                        </#if>
                         <div class="${properties.kcSelectAuthListItemIconClass!}">
                             <i class="${iconClass} ${properties.kcSelectAuthListItemIconPropertyClass!}"></i>
                         </div>

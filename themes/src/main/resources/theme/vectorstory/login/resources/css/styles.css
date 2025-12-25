@@ -668,40 +668,40 @@ input[type="radio"]:focus {
 
 /* 为图标添加默认内容,当没有图标时显示 */
 .pf-v5-c-data-list__cell.pf-m-icon:empty::before,
-.pf-v5-c-data-list__cell.pf-m-icon i:empty::before {
+.pf-v5-c-data-list__cell.pf-m-icon i:empty:not([class*="fa-"])::before {
     content: "🔐";
     font-size: 1.5rem;
 }
 
 /* 针对不同登录方式的图标样式 */
 /* 用户名密码登录 */
-.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorPasswordClass::before,
-.pf-v5-c-data-list__cell.pf-m-icon i[class*="password"]::before {
+.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorPasswordClass:not([class*="fa-"])::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="password"]:not([class*="fa-"])::before {
     content: "🔑";
 }
 
 /* 手机号验证码登录 */
-.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorSMSClass::before,
-.pf-v5-c-data-list__cell.pf-m-icon i[class*="sms"]::before,
-.pf-v5-c-data-list__cell.pf-m-icon i[class*="phone"]::before {
+.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorSMSClass:not([class*="fa-"])::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="sms"]:not([class*="fa-"])::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="phone"]:not([class*="fa-"])::before {
     content: "📱";
 }
 
 /* 邮箱验证码登录 */
-.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorEmailClass::before,
-.pf-v5-c-data-list__cell.pf-m-icon i[class*="email"]::before {
+.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorEmailClass:not([class*="fa-"])::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="email"]:not([class*="fa-"])::before {
     content: "📧";
 }
 
 /* OTP/TOTP */
-.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorOTPClass::before,
-.pf-v5-c-data-list__cell.pf-m-icon i[class*="otp"]::before {
+.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorOTPClass:not([class*="fa-"])::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="otp"]:not([class*="fa-"])::before {
     content: "🔢";
 }
 
 /* WebAuthn */
-.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorWebAuthnClass::before,
-.pf-v5-c-data-list__cell.pf-m-icon i[class*="webauthn"]::before {
+.pf-v5-c-data-list__cell.pf-m-icon i.kcAuthenticatorWebAuthnClass:not([class*="fa-"])::before,
+.pf-v5-c-data-list__cell.pf-m-icon i[class*="webauthn"]:not([class*="fa-"])::before {
     content: "🔐";
 }
 
